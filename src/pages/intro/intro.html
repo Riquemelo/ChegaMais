@@ -16,7 +16,7 @@
         <img [src]="slide.image" class="slide-image"/>
         <ion-toolbar>
             <ion-buttons end>
-              <button ion-button color="danger">Skip</button>
+              <button (click)="goToLoginPage()" ion-button color="danger">Skip</button>
             </ion-buttons>
         </ion-toolbar>
     </div>
@@ -25,13 +25,13 @@
     <ion-slide>
       
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image"/>
-      <h2 class="slide-title">Ready to Play?</h2>
-
-        <button ion-button large clear icon-end color="Danger">
-          Continue
+      <h2 class="slide-title">Só chega mais aí!</h2>
+      
+        <button (click)="goToLoginPage()" ion-button large clear icon-end color="Danger">
+          Continuar
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
-      <ion-toolbar>
+      <ion-toolbar id="footer-intro">
       </ion-toolbar>
     </ion-slide>
 

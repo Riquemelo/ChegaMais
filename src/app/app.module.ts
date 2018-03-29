@@ -10,9 +10,11 @@ import { FeedPage } from '../pages/feed/feed';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FeedPage,
     HomePage,
     TabsPage,
-    IntroPage
+    IntroPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FeedPage,
     HomePage,
     TabsPage,
-    IntroPage
+    IntroPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
