@@ -1,0 +1,59 @@
+page-intro {
+    .slidescreen{
+        .toolbar-background {
+            background: #300300;
+            border-color:transparent;
+        }
+        
+        .slide-zoom {
+            height: 100%;
+            background-color: #2a2a2a;
+        }
+        
+        .slide-title {
+            margin-top: 2.8rem;
+            color: #ffffff;
+        }
+        
+        .slide-image {
+            max-height: 70%;
+            max-width: 100%;
+            margin: 18px 0;
+            margin-bottom: 0;
+
+        }
+        
+        b {
+            font-weight: 500;
+        }
+        
+        p {
+            padding: 0 40px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #ffffff;
+        }
+            b {
+            color: #ffffff;
+            }
+            
+        }
+    .no-scroll .scroll-content{
+        overflow: hidden;
+    }
+    #title-intro{
+        max-width: 60%;
+        max-height: 50%;
+    }
+    #footer-intro{
+        background: linear-gradient(to bottom, #2a2a2a 0%, #2a2a2a 50%, #300300 51%, #300300 100%);
+        position:absolute;
+        bottom:0;
+    }
+    .swiper-pagination-bullet-active {
+        background: #ff0000;
+        opacity: 1;
+    }
+    }
+
+        
