@@ -21,3 +21,26 @@
 .no-scroll .scroll-content{
     overflow: hidden;
 }
+ion-icon {
+    &[class*="chegaMais-"] {
+        // Instead of using the font-based icons
+        // We're applying SVG masks
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 3em;
+        height: 3em;
+    }
+    &[class*="chegaMais-icone"] {
+        mask-image: url(../assets/icon/icone.png);
+        padding: 1em;
+
+    }
+}
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color: #a50b0d;
+}
+.tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+    color: #a50b0d;
+}

@@ -1,10 +1,34 @@
 page-login {
-    .color-login{
-        background-color: #8c231d
-    }
     .form-login{
+        width: 85%;
+        height: 30px;
+        margin: 1px 0;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 3%;
+    }
+    #logotipo-login{
+        max-width: 60%;
+        max-height: 50%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3%;
+    }
+    #div-login{
+        padding: 4%;
+        text-align: center;
+    }
+    #cadastro-button-login{
+        position:absolute;
+        bottom:0;
+        width: 100%;
+        padding: 5% 0;
+        background-color: #530701;
+        color: white;
+    }
+    #esqueci-login{
+        color: #a50b0d;
         font-weight: bold;
-        color: #ffffff ;
-        align-content: center;
     }
 }

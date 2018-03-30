@@ -28,7 +28,7 @@ page-intro {
         }
         
         p {
-            padding: 0 40px;
+            padding: 0 20px;
             font-size: 14px;
             line-height: 1.5;
             color: #ffffff;
@@ -50,6 +50,9 @@ page-intro {
     .swiper-pagination-bullet-active {
         background: #ff0000;
         opacity: 1;
+    }
+    .button-inner{
+        color: red;
     }
     }
 
