@@ -2,12 +2,11 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-//import { GoogleMaps } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 import { ProfilePage } from '../pages/profile/profile';
 import { FeedPage } from '../pages/feed/feed';
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
@@ -22,10 +21,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     ProfilePage,
     FeedPage,
-    HomePage,
     TabsPage,
     IntroPage,
-    LoginPage
+    LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +34,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     ProfilePage,
     FeedPage,
-    HomePage,
     TabsPage,
     IntroPage,
     LoginPage
@@ -44,7 +41,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    //GoogleMaps,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
