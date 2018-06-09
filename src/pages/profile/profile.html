@@ -8,4 +8,21 @@
 
 <ion-content padding>
 
+    <button ion-button full (click)="loginWithFB()">Login Com Facebok.</button>
+ 
+  <ion-card *ngIf="userData">
+    <ion-card-header>{{ userData.username }}</ion-card-header>
+    <ion-list>
+      <ion-item>
+          <ion-thumbnail item-start>
+              <img [src]="userData.picture" />
+          </ion-thumbnail>
+      </ion-item>
+    </ion-list>
+    <ion-card-content>
+      <p>Email: {{ userData.email }}</p>
+      <p>First Name: {{ userData.first_name }}</p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
