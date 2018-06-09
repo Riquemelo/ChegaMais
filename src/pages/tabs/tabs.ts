@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { ProfilePage } from '../profile/profile';
 import { FeedPage } from '../feed/feed';
-import { HomePageModule } from '../home/home.module';
+import { HomePage } from '../home/home';
 
 @Component({
   templateUrl: 'tabs.html'

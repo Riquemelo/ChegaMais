@@ -7,10 +7,10 @@ declare var google;
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-list',
+  templateUrl: 'list.html'
 })
-export class HomePage {
+export class ListPage {
   @ViewChild('map') mapElement: ElementRef;
   private map: any;
   private directionsService = new google.maps.DirectionsService;
@@ -267,7 +267,7 @@ export class HomePage {
     });
     let marker = new google.maps.Marker({
       position: myLtdLgt,
-      map: this.map,
+      maplist: this.map,
       title: 'Você está aqui'
     });
     this.directionsDisplay.setMap(this.map);
