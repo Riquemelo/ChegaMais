@@ -11,30 +11,36 @@ declare var google;
   templateUrl: 'home.html'
 })
 export class HomePage {
-  @ViewChild('map') mapElement: ElementRef;
+  @ViewChild('mapHome') mapElement: ElementRef;
   private map: any;
+  public myLtdLgt;
   private directionsService = new google.maps.DirectionsService;
   private directionsDisplay = new google.maps.DirectionsRenderer;
 
   constructor(private geolocation: Geolocation, public navCtrl: NavController) { }
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+      this.actualLocation();
+  }
 
+  actualLocation(){
     this.geolocation.getCurrentPosition().then((resp) => {
       this.initMap(resp.coords.latitude, resp.coords.longitude);
     }).catch((error) => {
       console.log('Error getting location', error);
+      this.initMap(0, 0);
     });
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
       // data can be a set of coordinates, or an error (if an error occurred).
       // data.coords.latitude
       // data.coords.longitude
-    });
+    }); 
   }
-  private initMap(actualLatitude, actualLongitude) {
-    let myLtdLgt = {lat: actualLatitude, lng: actualLongitude};
+  initMap(actualLatitude, actualLongitude) {
+    let zoom: number = (actualLatitude == 0 && actualLongitude == 0) ? 1 : 14;
+    this.myLtdLgt = {lat: actualLatitude, lng: actualLongitude};
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 14,
+      zoom: zoom,
       styles: [
         {
           "elementType": "geometry",
@@ -262,16 +268,14 @@ export class HomePage {
             }
           ]
         }],
-      center: myLtdLgt,
+      center: this.myLtdLgt,
       disableDefaultUI: true,
     });
-    let marker = new google.maps.Marker({
-      position: myLtdLgt,
+    let marker = (actualLatitude != 0 || actualLongitude != 0) ? new google.maps.Marker({
+      position: this.myLtdLgt,
       map: this.map,
       title: 'Você está aqui'
-    });
+    }) : undefined;
     this.directionsDisplay.setMap(this.map);
   }
-
-
 }

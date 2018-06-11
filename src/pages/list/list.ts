@@ -2,8 +2,13 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { HomePage } from '../home/home';
+import { HomePageModule } from '../home/home.module';
+import * as $ from 'jquery'
+
 
 declare var google;
+var distancia = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=Praia+Grande,SP&destinations=-23.969753,-46.333185&key=AIzaSyCg24vrqk4EoxnIW7pXw21Bg66o-1i3-aU'
 
 @IonicPage()
 @Component({
@@ -11,267 +16,46 @@ declare var google;
   templateUrl: 'list.html'
 })
 export class ListPage {
-  @ViewChild('map') mapElement: ElementRef;
-  private map: any;
-  private directionsService = new google.maps.DirectionsService;
-  private directionsDisplay = new google.maps.DirectionsRenderer;
+  eventos =
+    [
+      {
+        eventID: 1,
+        nome: 'Festa na Praça',
+        coordenadas: '-23.969753,-46.333185',
+        endereco: 'Praça das Bandeiras, Santos',
+        mapsConfig:'zoom=15&size=450x300&maptype=terrain&markers=color:red%7Clabel:A%7C-23.969753,-46.333185&'
+      },
+      {
+        eventID: 2,
+        nome: 'Festa do Jeraudinhu',
+        coordenadas: '-24.082692,-46.598718',
+        endereco: 'Rua Coelho Neto, Praia Grande',
+        mapsConfig:'zoom=15&size=450x300&maptype=terrain&markers=color:red%7Clabel:A%7C-24.082692,-46.598718&'
+      }
+    ];
+
+  mapsStatic: string = 'https://maps.googleapis.com/maps/api/staticmap?'
+  mapsStyle: string = 'style=element:geometry%7Ccolor:0x212121&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x757575&style=element:labels.text.stroke%7Ccolor:0x212121&style=feature:administrative%7Celement:geometry%7Ccolor:0x757575&style=feature:administrative.country%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:administrative.land_parcel%7Celement:labels%7Cvisibility:off&style=feature:administrative.locality%7Celement:labels.text.fill%7Ccolor:0xbdbdbd&style=feature:poi%7Celement:labels.text%7Cvisibility:off&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:poi.business%7Cvisibility:off&style=feature:poi.park%7Celement:geometry%7Ccolor:0x181818&style=feature:poi.park%7Celement:labels.text%7Cvisibility:off&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x616161&style=feature:poi.park%7Celement:labels.text.stroke%7Ccolor:0x1b1b1b&style=feature:road%7Celement:geometry.fill%7Ccolor:0x2c2c2c&style=feature:road%7Celement:labels.text.fill%7Ccolor:0x8a8a8a&style=feature:road.arterial%7Celement:geometry%7Ccolor:0x373737&style=feature:road.highway%7Celement:geometry%7Ccolor:0x3c3c3c&style=feature:road.highway.controlled_access%7Celement:geometry%7Ccolor:0x4e4e4e&style=feature:road.local%7Celement:labels%7Cvisibility:off&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x616161&style=feature:transit%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:water%7Celement:geometry%7Ccolor:0x000000&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x3d3d3d&size=480x360&';
+  private APIkey: string = 'key=AIzaSyCrIAN1JYkaIJGwJPiUuyhVHr6kvV5ka_k';
 
   constructor(private geolocation: Geolocation, public navCtrl: NavController) { }
+
   ionViewDidLoad() {
-
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.initMap(resp.coords.latitude, resp.coords.longitude);
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((data) => {
-      // data can be a set of coordinates, or an error (if an error occurred).
-      // data.coords.latitude
-      // data.coords.longitude
+    this.eventos.forEach(evento => {
+      $(`#map${evento.eventID}`).append(`<img class='map-list' src="${this.mapsStatic}${evento.mapsConfig}${this.mapsStyle}${this.APIkey}">`);
     });
   }
-  private initMap(actualLatitude, actualLongitude) {
-    let myLtdLgt = {lat: actualLatitude, lng: actualLongitude};
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 14,
-      styles: [
-        {
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#212121"
-            }
-          ]
-        },
-        {
-          "elementType": "labels",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.icon",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.stroke",
-          "stylers": [
-            {
-              "color": "#212121"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.country",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.land_parcel",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.locality",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#bdbdbd"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.neighborhood",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#181818"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#616161"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "labels.text.stroke",
-          "stylers": [
-            {
-              "color": "#1b1b1b"
-            }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry.fill",
-          "stylers": [
-            {
-              "color": "#2c2c2c"
-            }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#8a8a8a"
-            }
-          ]
-        },
-        {
-          "featureType": "road.arterial",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#373737"
-            }
-          ]
-        },
-        {
-          "featureType": "road.arterial",
-          "elementType": "labels",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#3c3c3c"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "labels",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway.controlled_access",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#4e4e4e"
-            }
-          ]
-        },
-        {
-          "featureType": "road.local",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "road.local",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#616161"
-            }
-          ]
-        },
-        {
-          "featureType": "transit",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#000000"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#3d3d3d"
-            }
-          ]
-        }],
-      center: myLtdLgt,
-      disableDefaultUI: true,
-    });
-    let marker = new google.maps.Marker({
-      position: myLtdLgt,
-      maplist: this.map,
-      title: 'Você está aqui'
-    });
-    this.directionsDisplay.setMap(this.map);
-  }
-
-
 }
+  // CalculateAndDisplayRoute(start: String) {
+  //   this.directionsService.route({
+  //     origin: start,
+  //     destination: this.end,
+  //     travelMode: 'DRIVING'
+  //   }, (response, status) => {
+  //     if (status === 'OK') {
+  //       this.directionsDisplay.setDirections(response);
+  //     } else {
+  //       window.alert('Directions request failed due to ' + status);
+  //     }
+  //   });
+  // }
