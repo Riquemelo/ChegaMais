@@ -13,7 +13,7 @@
         <p>{{evento.endereco}}</p>
       </ion-item>
       <ion-item class="list_card_color">
-        <button class="title" ion-button icon-left clear item-end>
+        <button class="title event_button" (click)="goToEventoPage(evento.eventID)" ion-button icon-left clear item-end>
           <ion-icon class="title" name="navigate">
           </ion-icon>Ir ao evento</button>
       </ion-item>

@@ -22,6 +22,7 @@ import { Facebook } from '@ionic-native/facebook';//Importado
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { RegisterPage } from '../pages/register/register';
 
+import { EventoPage } from '../pages/evento/evento';
 @NgModule({
   declarations: [
     MyApp,
@@ -29,6 +30,7 @@ import { RegisterPage } from '../pages/register/register';
     FeedPage,
     TabsPage,
     IntroPage,
+    EventoPage,
     LoginPage,
     RegisterPage
   ],
@@ -44,6 +46,7 @@ import { RegisterPage } from '../pages/register/register';
     ProfilePage,
     FeedPage,
     TabsPage,
+    EventoPage,
     IntroPage,
     LoginPage,
     RegisterPage
