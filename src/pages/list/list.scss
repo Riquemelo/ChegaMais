@@ -1,0 +1,12 @@
+page-list {
+    background-color: $background-color;
+    .title{
+        color: #fff;
+    }
+    
+    .list_card_color{
+        background-color: color($colors, theme-darkred);
+    }
+
+
+}

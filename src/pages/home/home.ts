@@ -13,30 +13,45 @@ declare var google;
   templateUrl: 'home.html'
 })
 export class HomePage {
-  @ViewChild('map') mapElement: ElementRef;
-  map: any;
-  directionsService = new google.maps.DirectionsService;
-  directionsDisplay = new google.maps.DirectionsRenderer;
+  @ViewChild('mapHome') mapElement: ElementRef;
+  private map: any;
+  public myLtdLgt;
+  private directionsService = new google.maps.DirectionsService;
+  private directionsDisplay = new google.maps.DirectionsRenderer;
 
+<<<<<<< HEAD
   constructor(private afAuth: AngularFireAuth, private toast: ToastController, private geolocation: Geolocation, public navCtrl: NavController) { }
   ionViewDidLoad() {
+=======
+  constructor(private geolocation: Geolocation, public navCtrl: NavController) { }
+  ionViewWillEnter() {
+      this.actualLocation();
+  }
+>>>>>>> b2d25e050353a3669d9509f02bdf4c8f6f78944a
 
+  actualLocation(){
     this.geolocation.getCurrentPosition().then((resp) => {
       this.initMap(resp.coords.latitude, resp.coords.longitude);
     }).catch((error) => {
       console.log('Error getting location', error);
+      this.initMap(0, 0);
     });
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
       // data can be a set of coordinates, or an error (if an error occurred).
       // data.coords.latitude
       // data.coords.longitude
-    });
+    }); 
   }
   initMap(actualLatitude, actualLongitude) {
+<<<<<<< HEAD
     let myLtdLgt = { lat: actualLatitude, lng: actualLongitude };
+=======
+    let zoom: number = (actualLatitude == 0 && actualLongitude == 0) ? 1 : 14;
+    this.myLtdLgt = {lat: actualLatitude, lng: actualLongitude};
+>>>>>>> b2d25e050353a3669d9509f02bdf4c8f6f78944a
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 14,
+      zoom: zoom,
       styles: [
         {
           "elementType": "geometry",
@@ -264,16 +279,17 @@ export class HomePage {
             }
           ]
         }],
-      center: myLtdLgt,
+      center: this.myLtdLgt,
       disableDefaultUI: true,
     });
-    var marker = new google.maps.Marker({
-      position: myLtdLgt,
+    let marker = (actualLatitude != 0 || actualLongitude != 0) ? new google.maps.Marker({
+      position: this.myLtdLgt,
       map: this.map,
       title: 'Você está aqui'
-    });
+    }) : undefined;
     this.directionsDisplay.setMap(this.map);
   }
+<<<<<<< HEAD
 
   ionViewWillLoad() {
     this.afAuth.authState.subscribe(data => {
@@ -295,4 +311,6 @@ export class HomePage {
   }
 
 
+=======
+>>>>>>> b2d25e050353a3669d9509f02bdf4c8f6f78944a
 }

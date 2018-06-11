@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="theme-darkgray">
+    <ion-title>Categoria</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="ionContent" class="list-background-color">
+  <ion-list  *ngFor="let evento of eventos">
+    <ion-card>
+      <div [attr.id]="'map' + evento.eventID"></div>
+      <ion-item class="list_card_color">
+        <h2 class="title">{{evento.nome}}</h2>
+        <p>{{evento.endereco}}</p>
+      </ion-item>
+      <ion-item class="list_card_color">
+        <button class="title" ion-button icon-left clear item-end>
+          <ion-icon class="title" name="navigate">
+          </ion-icon>Ir ao evento</button>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

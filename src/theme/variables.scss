@@ -37,9 +37,10 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
-  header-color: #2a2a2a,
-  red-color: #530701
+  theme-darkgray: #2a2a2a,
+  theme-darkred: #530701
 );
+$background-color: color($colors, theme-darkgray);
 
 
 // App iOS Variables
