@@ -13,18 +13,25 @@
 </ion-header>
 
 
-<ion-content  class="background no-scroll" >
-    <img id='logotipo-login' align="center "src='assets/imgs/logotipo1.png'>
-    <div id='div-login'>
+<ion-content class="background no-scroll">
+  <img id='logotipo-login' align="center " src='assets/imgs/logotipo1.png'>
+  <div id='div-login'>
     <form align="center" action="POST">
-        <input class="form-login" type="email" name="email" placeholder="Email"><br><br>
-        <input class="form-login" type="password" name="pass" placeholder="Senha"><br><br>
-        <input class="form-login" type="submit" value="Login" (click)="goToTabsPage()">
+      <input class="form-login" type="email" name="email" placeholder="Email" [(ngModel)]="user.email">
+      <br>
+      <br>
+      <input class="form-login" type="password" name="pass" placeholder="Senha" [(ngModel)]="user.password">
+      <br>
+      <br>
+      <button ion-button (click)="login(user)">Login</button>
     </form>
     <br>
     <br>
     <a href="-" id="esqueci-login">Esqueci minha senha</a>
-    </div>
-    <br>
-    <button id="cadastro-button-login" align="center">Não tem uma conta? Crie uma agora mesmo</button>
+  </div>
+  <br>
+  <button ion-button (click)="goToTabsPage()" (click)="register()">
+    Não tem uma conta? Crie uma agora mesmo
+  </button>
+  
 </ion-content>

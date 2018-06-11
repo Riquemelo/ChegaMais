@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 
+import { User } from '../../models/user';
+import { RegisterPage } from '../register/register';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -17,15 +21,32 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class LoginPage {
 
-  constructor(private facebook: Facebook, public navCtrl: NavController, public navParams: NavParams) {
+  user = {} as User;
+
+  constructor(private afAuth: AngularFireAuth, private facebook: Facebook, public navCtrl: NavController, public navParams: NavParams) {
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-  goToTabsPage(){
+  goToTabsPage() {
     this.navCtrl.push(TabsPage);
+  }
+
+  async login(user: User) {
+    try {
+      const result = this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+      console.log(result);
+      this.goToTabsPage();
+    }
+    catch (e) {
+      console.error(e);
+    }
+  }
+
+  register() {
+    this.navCtrl.push(RegisterPage);
   }
 
 }

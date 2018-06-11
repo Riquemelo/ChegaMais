@@ -1,7 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, ToastController, NavParams } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+
+import { AngularFireAuth } from 'angularfire2/auth';
 
 declare var google;
 
@@ -16,7 +18,7 @@ export class HomePage {
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
 
-  constructor(private geolocation: Geolocation, public navCtrl: NavController) { }
+  constructor(private afAuth: AngularFireAuth, private toast: ToastController, private geolocation: Geolocation, public navCtrl: NavController) { }
   ionViewDidLoad() {
 
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -32,7 +34,7 @@ export class HomePage {
     });
   }
   initMap(actualLatitude, actualLongitude) {
-    let myLtdLgt = {lat: actualLatitude, lng: actualLongitude};
+    let myLtdLgt = { lat: actualLatitude, lng: actualLongitude };
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       zoom: 14,
       styles: [
@@ -271,6 +273,25 @@ export class HomePage {
       title: 'Você está aqui'
     });
     this.directionsDisplay.setMap(this.map);
+  }
+
+  ionViewWillLoad() {
+    this.afAuth.authState.subscribe(data => {
+      if (data && data.email && data.uid) {
+        this.toast.create({
+          message: 'Bem Vindo Ao ChegaMais',
+          duration: 3000
+        }).present();
+
+      }
+      else {
+        this.toast.create({
+          message: 'Email ou senha invádilidos',
+          duration: 3000
+        }).present();
+      }
+    })
+
   }
 
 

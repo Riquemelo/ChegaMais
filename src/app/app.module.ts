@@ -14,7 +14,15 @@ import { LoginPage } from '../pages/login/login';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AngularFireModule } from 'angularfire2';
+
+import { FIREBASE_CONFIG } from "./app.firebase.config";
+
 import { Facebook } from '@ionic-native/facebook';//Importado
+
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { RegisterPage } from '../pages/register/register';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -23,10 +31,13 @@ import { Facebook } from '@ionic-native/facebook';//Importado
     TabsPage,
     IntroPage,
     LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,7 +46,8 @@ import { Facebook } from '@ionic-native/facebook';//Importado
     FeedPage,
     TabsPage,
     IntroPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
