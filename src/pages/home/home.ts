@@ -19,15 +19,10 @@ export class HomePage {
   private directionsService = new google.maps.DirectionsService;
   private directionsDisplay = new google.maps.DirectionsRenderer;
 
-<<<<<<< HEAD
   constructor(private afAuth: AngularFireAuth, private toast: ToastController, private geolocation: Geolocation, public navCtrl: NavController) { }
   ionViewDidLoad() {
-=======
-  constructor(private geolocation: Geolocation, public navCtrl: NavController) { }
-  ionViewWillEnter() {
       this.actualLocation();
   }
->>>>>>> b2d25e050353a3669d9509f02bdf4c8f6f78944a
 
   actualLocation(){
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -44,12 +39,9 @@ export class HomePage {
     }); 
   }
   initMap(actualLatitude, actualLongitude) {
-<<<<<<< HEAD
     let myLtdLgt = { lat: actualLatitude, lng: actualLongitude };
-=======
     let zoom: number = (actualLatitude == 0 && actualLongitude == 0) ? 1 : 14;
     this.myLtdLgt = {lat: actualLatitude, lng: actualLongitude};
->>>>>>> b2d25e050353a3669d9509f02bdf4c8f6f78944a
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       zoom: zoom,
       styles: [
@@ -289,7 +281,6 @@ export class HomePage {
     }) : undefined;
     this.directionsDisplay.setMap(this.map);
   }
-<<<<<<< HEAD
 
   ionViewWillLoad() {
     this.afAuth.authState.subscribe(data => {
@@ -311,6 +302,4 @@ export class HomePage {
   }
 
 
-=======
->>>>>>> b2d25e050353a3669d9509f02bdf4c8f6f78944a
 }
