@@ -21,7 +21,8 @@ export class EventoPage {
 
   ionViewDidEnter() {
     $(`#mapa_evento`).append(`<img class='map-list' src="${this.mapsStatic}${evento.mapsConfig}${this.mapsStyle}${this.APIkey}">`);
-    $('descricao_evento').append(``);
+    $('#info_evento').append(`<div class="title-event"><h2>${evento.nome}</h2></div><div class="endereco-event"><p>${evento.endereco}</p></div><a href="" class="facebook">Veja este evento no Facebook</a>`);
+    $('#desc_evento').append(`<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nulla ante, euismod eget euismod in, bibendum eu elit. Nuncodio augue, consequat vulputate scelerisque nec, egestas volutpat dolor. Vivamus vehicula suscipit quam vitae lobortis.Maecenas sit amet leo fermentum, pellentesque odio quis, auctor ex. Maecenas vel pharetra mi. Maecenas pulvinar sollicitudinjusto, ac vulputate ligula. Proin eu neque aliquam nunc viverra lobortis. Nam nec viverra leo. Donec libero felis,mattis ac fermentum volutpat, porta sed nibh. Pellentesque non posuere urna. In felis tortor, cursus quis nunc in,pretium accumsan erat. Curabitur mollis dolor ut lectus ultricies congue tristique ut mi. Nullam vel neque blandit,aliquet arcu vel, scelerisque risus. Nunc tristique eros massa, eu aliquam metus maximus ut.</p>`)
   }
   
 }

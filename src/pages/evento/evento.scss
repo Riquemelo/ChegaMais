@@ -1,3 +1,39 @@
 page-evento {
+    .title-event{
+        background-color: #a50b0d;
+        color: #fff;
+    }
+    .endereco-event{
+        background-color: #9e9e9e;
+        color: black;
 
+        p{
+            font-size: 16px;
+            padding: 3%;
+            margin: 0%;
+        }
+    }
+    #info_evento{
+        padding-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    h2{
+        padding: 4%;
+        margin: 0;
+    }
+    #desc_evento{
+        background-color: color($colors, 'theme-darkred');
+        color: #fff;
+    }
+    .facebook {
+        text-align: center;
+        background: #3B5998;
+        color: white;
+        width: 100%;
+        height: 40px;
+        display: block;
+        padding-top: 12px;
+        text-decoration:none; 
+    }
 }

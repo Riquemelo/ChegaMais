@@ -22,13 +22,24 @@ page-login {
     #cadastro-button-login{
         position:absolute;
         bottom:0;
+        height: 10%;
         width: 100%;
         padding: 5% 0;
         background-color: #530701;
         color: white;
     }
+    #cadastro-button-login:active{
+        background-color: #a50b0d
+    }
     #esqueci-login{
         color: #a50b0d;
         font-weight: bold;
+    }
+    .form-button{
+        color: #fff;
+        background-color: #530701
+    }
+    .form-button:active{
+        background-color: #a50b0d;
     }
 }

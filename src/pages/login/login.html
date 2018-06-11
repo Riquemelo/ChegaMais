@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar class="theme-darkgray">
+  <ion-navbar color="theme-darkred">
     <ion-title>Login</ion-title>
   </ion-navbar>
 
@@ -23,14 +23,14 @@
       <input class="form-login" type="password" name="pass" placeholder="Senha" [(ngModel)]="user.password">
       <br>
       <br>
-      <button ion-button (click)="login(user)">Login</button>
+      <button class="form-button" ion-button (click)="login(user)">Login</button>
     </form>
     <br>
     <br>
     <a href="-" id="esqueci-login">Esqueci minha senha</a>
   </div>
   <br>
-  <button ion-button (click)="goToTabsPage()" (click)="register()">
+  <button id="cadastro-button-login" ion-button (click)="goToTabsPage()" (click)="register()">
     Não tem uma conta? Crie uma agora mesmo
   </button>
   
