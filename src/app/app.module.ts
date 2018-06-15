@@ -14,6 +14,7 @@ import { EventoPage } from '../pages/evento/evento';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { FIREBASE_CONFIG } from "./app.firebase.config";
 import { Facebook } from '@ionic-native/facebook';//Importado
@@ -35,7 +36,8 @@ import { RegisterPage } from '../pages/register/register';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
