@@ -23,6 +23,8 @@ export class LoginPage {
 
   user = {} as User;
 
+  icons;
+
   constructor(private afAuth: AngularFireAuth, private facebook: Facebook, public navCtrl: NavController, public navParams: NavParams) {
 
   }
@@ -37,6 +39,7 @@ export class LoginPage {
   async login(user: User) {
     try {
       const result = this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+      this.afAuth.auth.sendSignInLinkToEmail;
       console.log(result);
       this.goToTabsPage();
     }
