@@ -12,8 +12,10 @@ export class FeedPage {
 
   }
 
-goToListPage(){
-  this.navCtrl.push('ListPage');
+goToListPage(categoria: string){
+  this.navCtrl.push('ListPage', {
+    Categoria: categoria
+  });
 }
 
 }
