@@ -5,15 +5,15 @@
 </ion-header>
 
 <ion-content id="ionContent" class="list-background-color">
-  <ion-list  *ngFor="let evento of eventos">
+  <ion-list *ngFor="let evento of eventos | async">
     <ion-card>
-      <div [attr.id]="'map' + evento.eventID"></div>
+      <div [attr.id]="'map' + evento.key"></div>
       <ion-item class="list_card_color">
         <h2 class="title">{{evento.nome}}</h2>
         <p>{{evento.endereco}}</p>
       </ion-item>
       <ion-item class="list_card_color">
-        <button class="title event_button" (click)="goToEventoPage(evento.eventID)" ion-button icon-left clear item-end>
+        <button class="title event_button" (click)="goToEventoPage(evento.key)" ion-button icon-left clear item-end>
           <ion-icon class="title" name="navigate">
           </ion-icon>Ir ao evento</button>
       </ion-item>
