@@ -4,6 +4,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { User } from '../../models/user';
+import { Profile } from '../../models/profile';
+
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from "angularfire2/auth";
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
@@ -23,6 +26,8 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class RegisterPage {
 
+  profile = {} as Profile;
+
   user = {} as User;
 
   tituloErro = '';
@@ -32,7 +37,8 @@ export class RegisterPage {
     private afAuth: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    public afDatabase: AngularFireDatabase) {
   }
 
   goToLoginPage() {
@@ -61,7 +67,7 @@ export class RegisterPage {
     } else if (mensagem.code == 'auth/weak-password') {
       this.tituloErro = 'Senha fraca';
       this.mesagemErro = 'Essa senha não é forte o suficiente';
-    }else {
+    } else {
       this.tituloErro = mensagem.code;
       this.mesagemErro = mensagem.message;
     }
@@ -75,33 +81,40 @@ export class RegisterPage {
 
 
   async register(user: User) {
+    if (user.email != '' && user.password != '' && user.email != null)
       this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
-      .then((result => {
+        .then((result) => {
+          this.afAuth.authState.take(1).subscribe(auth => {
+            this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
+              .then((result2) => {
+                console.log(result);
+                console.log(result2);
 
-        console.log(result);
+                let alert = this.alertCtrl.create({
+                  title: 'Registro feito com sucesso',
+                  message: 'Chega Mais ' + user.email + ' !!!',
+                  buttons: [
+                    {
+                      text: 'Continuar',
+                      role: 'Continuar',
+                      handler: () => {
+                        this.goToTabsPage();
+                      }
+                    }
+                  ]
+                });
+                alert.present();
+                alert.onDidDismiss(() => {
+                  this.goToTabsPage();
+                })
 
-        let alert = this.alertCtrl.create({
-          title: 'Registro feito com sucesso',
-          message: 'Chega Mais ' + user.email + ' !!!',
-          buttons: [
-            {
-              text: 'Continuar',
-              role: 'Continuar',
-              handler: () => {
-                this.goToTabsPage();
-              }
-            }
-          ]
-        });
-        alert.present();
-        alert.onDidDismiss(() => {
-          this.goToTabsPage();
-        })
+              }).catch(function (error) {
+                console.log(error);
+              });
+          })}).catch(function (error) {
+            console.log(error);
+          });
 
-      })).catch(function (error) {
-        console.log(error);
-      });
-    
 
   }
 

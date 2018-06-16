@@ -13,8 +13,10 @@
   <img id='logotipo-login' align="center " src='assets/imgs/logotipo1.png'>
   <div id='div-login'>
     <form align="center" action="POST">
-      <input clearInput class="form-login" type="email" name="email" placeholder="Email" [(ngModel)]="user.email">
-      <input class="form-login" type="password" name="pass" placeholder="Senha" [(ngModel)]="user.password">
+      <input clearInput class="form-login" name="username" type="text" placeholder="Username" [(ngModel)]="profile.nome">
+      <input clearInput class="form-login" name="nome" type="text" placeholder="Nome" [(ngModel)]="profile.username">
+      <input clearInput class="form-login" name="email" type="email" placeholder="Email" [(ngModel)]="user.email">
+      <input clearInput class="form-login" name="senha" type="password" placeholder="Senha" [(ngModel)]="user.password">
       <button class="form-button" ion-button (click)="register(user)">Registre-se</button>
     </form>
   </div>
