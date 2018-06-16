@@ -11,7 +11,9 @@ import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { EventoPage } from '../pages/evento/evento';
 import { RegisterPage } from '../pages/register/register';
-import { HomePage } from '../pages/home/home';
+// import { HomePage } from '../pages/home/home';
+
+// import {SharedModule } from '../app/share.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,15 +33,16 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     IntroPage,
     EventoPage,
     LoginPage,
-    RegisterPage,
-    HomePage
+    RegisterPage
+    //HomePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,8 +53,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     EventoPage,
     IntroPage,
     LoginPage,
-    RegisterPage,
-    HomePage
+    RegisterPage
+    // HomePage
   ],
   providers: [
     StatusBar,

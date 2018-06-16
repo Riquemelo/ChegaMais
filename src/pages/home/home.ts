@@ -282,24 +282,24 @@ export class HomePage {
     this.directionsDisplay.setMap(this.map);
   }
 
-  ionViewWillLoad() {
-    this.afAuth.authState.subscribe(data => {
-      if (data && data.email && data.uid) {
-        this.toast.create({
-          message: 'Bem Vindo Ao ChegaMais',
-          duration: 3000
-        }).present();
+  // ionViewWillLoad() {
+  //   this.afAuth.authState.subscribe(data => {
+  //     if (data && data.email && data.uid) {
+  //       this.toast.create({
+  //         message: 'Bem Vindo Ao ChegaMais',
+  //         duration: 3000
+  //       }).present();
 
-      }
-      else {
-        this.toast.create({
-          message: 'Email ou senha invádilidos',
-          duration: 3000
-        }).present();
-      }
-    })
+  //     }
+  //     else {
+  //       this.toast.create({
+  //         message: 'Email ou senha invádilidos',
+  //         duration: 3000
+  //       }).present();
+  //     }
+  //   })
 
-  }
+  // }
 
 
 }

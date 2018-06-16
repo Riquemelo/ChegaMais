@@ -12,10 +12,11 @@
 <ion-content class="background no-scroll">
   <img id='logotipo-login' align="center " src='assets/imgs/logotipo1.png'>
   <div id='div-login'>
-    <form align="center" action="POST">
+    <form align="center">
       <input autocomplete class="form-login" type="email" name="email" placeholder="Email" [(ngModel)]="user.email">
       <input class="form-login" type="password" name="pass" placeholder="Senha" [(ngModel)]="user.password">
       <button class="form-button" ion-button (click)="login(user)">Login</button>
+      <div>{{ErroMenssagem}}</div>    
     </form>
     <a href="-" id="esqueci-login">Esqueci minha senha</a>
   </div>

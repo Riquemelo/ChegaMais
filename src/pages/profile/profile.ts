@@ -1,26 +1,31 @@
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+
+import { Profile } from '../../models/profile';
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
+
 export class ProfilePage {
 
-  userData: any;
+  profile = {} as Profile;
 
-  constructor(private facebook: Facebook, public navCtrl: NavController) {
-
+  constructor(
+    public navCtrl: NavController,
+    public afAuth: AngularFireAuth,
+    public afDatabase: AngularFireDatabase) {
   }
 
-  loginWithFB() {
-    this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
-      this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(profile => {
-        this.userData = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
-      });
-    });
-  
+  createProfile() {
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDatabase.object('profile/${auth.uid}').set(this.profile)
+        .then(() => this.navCtrl.setRoot('TabsPage'));
+    })
   }
 
 }

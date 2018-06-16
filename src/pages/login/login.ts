@@ -1,10 +1,11 @@
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+
 import { TabsPage } from '../tabs/tabs';
+import { RegisterPage } from '../register/register';
 
 import { User } from '../../models/user';
-import { RegisterPage } from '../register/register';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
@@ -21,31 +22,49 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class LoginPage {
 
+  result;
+
+  ErroMenssagem;
+
   user = {} as User;
 
-  icons;
-
-  constructor(private afAuth: AngularFireAuth, private facebook: Facebook, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private alertCtrl: AlertController) {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad LoginPage');
+  // }
   goToTabsPage() {
     this.navCtrl.push(TabsPage);
   }
 
+  alert(message: string) {
+    this.alertCtrl.create({
+      title: 'Info!',
+      subTitle: message,
+      buttons: ['OK']
+    }).present();
+  }
+
   async login(user: User) {
-    try {
-      const result = this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-      this.afAuth.auth.sendSignInLinkToEmail;
-      console.log(result);
-      this.goToTabsPage();
-    }
-    catch (e) {
-      console.error(e);
-    }
+    if (user.email != '' && user.password != '' && user.email != null)
+      this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
+        .then((returnedUser) => {
+
+          console.log(returnedUser);
+
+          this.goToTabsPage();
+          this.alert('Sucesso! Você Logou');
+
+        }).catch(function (error) {
+          console.log(error);
+        });
   }
 
   register() {
@@ -53,3 +72,5 @@ export class LoginPage {
   }
 
 }
+
+

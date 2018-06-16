@@ -7,6 +7,7 @@ import { User } from '../../models/user';
 import { AngularFireAuth } from "angularfire2/auth";
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the RegisterPage page.
@@ -38,8 +39,8 @@ export class RegisterPage {
     this.navCtrl.push(LoginPage);
   }
 
-  goToHomePage() {
-    this.navCtrl.push(HomePage);
+  goToTabsPage() {
+    this.navCtrl.push(TabsPage);
   }
 
   // Alertas de erros
@@ -74,30 +75,34 @@ export class RegisterPage {
 
 
   async register(user: User) {
-    try {
-      const result = this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+      this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
+      .then((result => {
 
-      let alert = this.alertCtrl.create({
-        title: 'Registro feito com sucesso',
-        message: 'Chega Mais ' + user.email + ' !!!' + result,
-        buttons: [
-          {
-            text: 'Continuar',
-            role: 'Continuar',
-            handler: () => {
-              this.goToHomePage();
+        console.log(result);
+
+        let alert = this.alertCtrl.create({
+          title: 'Registro feito com sucesso',
+          message: 'Chega Mais ' + user.email + ' !!!',
+          buttons: [
+            {
+              text: 'Continuar',
+              role: 'Continuar',
+              handler: () => {
+                this.goToTabsPage();
+              }
             }
-          }
-        ]
+          ]
+        });
+        alert.present();
+        alert.onDidDismiss(() => {
+          this.goToTabsPage();
+        })
+
+      })).catch(function (error) {
+        console.log(error);
       });
-      alert.present();
-      alert.onDidDismiss(() => {
-        this.goToHomePage();
-      })
-    }
-    catch (e) {
-      this.alertaErro(e);//Chamando o alerta dos erros
-    }
+    
+
   }
 
 }
