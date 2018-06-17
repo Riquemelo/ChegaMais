@@ -14,15 +14,10 @@ export class Session {
     }
     // setando uma seção e passando o tipo de usuário
     create(email: string) {
-        console.log('email >>> ', email);
         this.storage.set('email', email);
-        this.get().then(res => {
-            console.log('resultado >>> ', res);
-        });
     }
 
     get(): Promise<any> {
-
         return this.storage.get('email');
     }
 
@@ -30,7 +25,6 @@ export class Session {
     remove() {
         this.storage.remove('email');
         this.get().then(res => {
-            console.log('resultado >>> ', res);
         });
     }
 
@@ -44,7 +38,6 @@ export class Session {
                 check = null;
             }  
         });
-        console.log(check);
         return check;
     } 
 }
