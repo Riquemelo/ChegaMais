@@ -14,6 +14,10 @@ page-intro {
             margin-top: 2.8rem;
             color: #ffffff;
         }
+
+        .text-div{
+            margin-top: 50%;
+        }
         
         .slide-image {
             max-height: 70%;
@@ -39,13 +43,17 @@ page-intro {
             
         }
     #title-intro{
-        max-width: 60%;
-        max-height: 50%;
+        max-width: 90%;
+        max-height: 80%;
     }
     #footer-intro{
-        background: linear-gradient(to bottom, #2a2a2a 0%, #2a2a2a 50%, #300300 51%, #300300 100%);
+        background: linear-gradient(to bottom, #2a2a2a 0%, #2a2a2a 70%, #300300 71%, #300300 100%);
         position:absolute;
         bottom:0;
+    }
+    
+    #final-image{
+        margin-top: 45%;
     }
     .swiper-pagination-bullet-active {
         background: #ff0000;

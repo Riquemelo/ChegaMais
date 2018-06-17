@@ -1,4 +1,29 @@
 <ion-header>
+    <ion-navbar color="theme-darkgray">
+      <ion-title>
+        Perfil
+      </ion-title>
+      <ion-buttons end>
+          <button (click)="showConfirm()" ion-button icon-only>
+            <ion-icon name="exit"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+
+
+<ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="secoes">
+      <ion-segment-button value="infos">
+        Informações
+      </ion-segment-button>
+      <ion-segment-button value="events">
+        Eventos
+      </ion-segment-button>
+      <ion-segment-button value="amigos">
+        Amigos
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 

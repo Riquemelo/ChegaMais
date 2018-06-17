@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AlertController } from 'ionic-angular';
-
+import { Session } from '../../app/session';
 import { User } from '../../models/user';
 import { Profile } from '../../models/profile';
 
@@ -38,7 +38,7 @@ export class RegisterPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private alertCtrl: AlertController,
-    public afDatabase: AngularFireDatabase) {
+    public session: Session) {
   }
 
   goToLoginPage() {
@@ -105,6 +105,7 @@ export class RegisterPage {
                 });
                 alert.present();
                 alert.onDidDismiss(() => {
+                  this.session.create(user.email, user.password);
                   this.goToTabsPage();
                 })
 
@@ -114,8 +115,6 @@ export class RegisterPage {
           })}).catch(function (error) {
             console.log(error);
           });
-
-
   }
 
 }

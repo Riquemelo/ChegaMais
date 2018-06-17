@@ -7,30 +7,46 @@
 <ion-content class="slidescreen no-scroll">
 
   <ion-slides pager>
+    <ion-slide>
+      <h2 class="slide-title">
+        <img id='title-intro' src='assets/imgs/logotipo1.png'>
+      </h2>
+      <p>Procurando algum evento do seu interesse?</p>
+      <p>Veio ao lugar certo</p>
+      <div id="footer-intro">
+        <img src="assets/imgs/city.png" class="slide-image" />
+        <ion-toolbar>
+          <ion-buttons end>
+            <button (click)="goToLoginPage()" ion-button color="danger">Pular</button>
+          </ion-buttons>
+        </ion-toolbar>
+      </div>
+    </ion-slide>
 
     <ion-slide *ngFor="let slide of slides">
-      
-      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
-      <p [innerHTML]="slide.description"></p>
+      <div class="text-div">
+        <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+        <p [innerHTML]="slide.description"></p>
+      </div>
       <div id="footer-intro">
-        <img [src]="slide.image" class="slide-image"/>
+        <img [src]="slide.image" class="slide-image" />
         <ion-toolbar>
-            <ion-buttons end>
-              <button (click)="goToLoginPage()" ion-button color="danger">Pular</button>
-            </ion-buttons>
+          <ion-buttons end>
+            <button (click)="goToLoginPage()" ion-button color="danger">Pular</button>
+          </ion-buttons>
         </ion-toolbar>
-    </div>
+      </div>
     </ion-slide>
 
     <ion-slide>
-      
-      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image"/>
-      <h2 class="slide-title">Só chega mais aí!</h2>
-      
+      <div id="final-image">
+        <img src="assets/imgs/intro4.png" class="slide-image" />
+        <h2 class="slide-title">Só chega mais aí!</h2>
         <button (click)="goToLoginPage()" ion-button large clear icon-end color="Danger">
           Continuar
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
+      </div>
       <ion-toolbar id="footer-intro">
       </ion-toolbar>
     </ion-slide>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {  IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the IntroPage page.
@@ -16,28 +17,21 @@ import { LoginPage } from '../login/login';
 })
 export class IntroPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  }
+  ionViewDidLoad(){
+
   }
   slides = [
     {
-      title: "<img id='title-intro' src='assets/imgs/logotipo1.png'> ",
-      description: "Procurando algum evento do seu interesse?</p> <p>Veio ao lugar certo</p>",
-      image: "assets/imgs/city.png",
-    },
-    {
-      title: "O que isso faz?",
-      description: "<b>Chega+</b> é aquele seu amigo que sempre sabe onde te levar naquele seu tempo livre quando você não aguenta mais ficar em casa",
-      image: "",
-    },
-    {
       title: "Cada um tem seu jeito",
       description: "<b>Chega+</b> monitora eventos ao seu redor e os apresenta de uma maneira fácil e organizada para que aproveite eventos do seu jeito",
-      image: "",
+      image: "assets/imgs/intro3.png",
     },
     {
       title: "Mais rolês?",
       description: "Se conecte com o Facebook, e veja cada vez mais eventos de maneira rapida e unificada",
-      image: "",
+      image: "assets/imgs/intro2.png",
     }
   ];
   goToLoginPage(){

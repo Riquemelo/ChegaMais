@@ -3,9 +3,9 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 
 import { TabsPage } from '../tabs/tabs';
 import { RegisterPage } from '../register/register';
-
+import { Session } from '../../app/session';
 import { User } from '../../models/user';
-
+import { Storage } from '@ionic/storage';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
@@ -32,8 +32,8 @@ export class LoginPage {
     private afAuth: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private alertCtrl: AlertController) {
-
+    private alertCtrl: AlertController, 
+    public session: Session){
   }
 
 
@@ -56,9 +56,9 @@ export class LoginPage {
     if (user.email != '' && user.password != '' && user.email != null)
       this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
         .then((returnedUser) => {
-
+          this.session.create(user.email, user.password);
           console.log(returnedUser);
-
+          
           this.goToTabsPage();
           this.alert('Sucesso! Você Logou');
 

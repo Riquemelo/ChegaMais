@@ -14,7 +14,8 @@ import { RegisterPage } from '../pages/register/register';
 // import { HomePage } from '../pages/home/home';
 
 // import {SharedModule } from '../app/share.module';
-
+import { Session } from '../app/session';
+import { IonicStorageModule } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -27,6 +28,7 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 @NgModule({
   declarations: [
     MyApp,
+    
     ProfilePage,
     FeedPage,
     TabsPage,
@@ -42,7 +44,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    
+    IonicStorageModule.forRoot(),
+    Session
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -61,7 +64,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     SplashScreen,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Facebook
+    Facebook,
+    
   ]
 })
 export class AppModule {}

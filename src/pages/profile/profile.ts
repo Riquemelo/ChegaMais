@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { IntroPage } from '../intro/intro';
 import { Profile } from '../../models/profile';
-
+import { Session } from '../../app/session';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -18,7 +18,8 @@ export class ProfilePage {
   constructor(
     public navCtrl: NavController,
     public afAuth: AngularFireAuth,
-    public afDatabase: AngularFireDatabase) {
+    public afDatabase: AngularFireDatabase,
+    public session: Session) {
   }
 
   createProfile() {
@@ -27,5 +28,29 @@ export class ProfilePage {
         .then(() => this.navCtrl.setRoot('TabsPage'));
     })
   }
+
+  showConfirm() {
+    const confirm = this.alertCtrl.create({
+      title: 'Não nos deixe :(',
+      message: 'Tem certeza que quer sair?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            this.session.remove();
+            goToIntroPage(() => {
+              this.navCtrl.push(IntroPage);
+            });
+          }
+        }
+      ]
+    });
+    confirm.present();
 
 }
