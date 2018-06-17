@@ -13,32 +13,38 @@ export class Session {
 
     }
     // setando uma seção e passando o tipo de usuário
-    create(email: string, pass: string) {
+    create(email: string) {
+        console.log('email >>> ', email);
         this.storage.set('email', email);
-        this.storage.set('pass', pass);
+        this.get().then(res => {
+            console.log('resultado >>> ', res);
+        });
     }
 
     get(): Promise<any> {
+
         return this.storage.get('email');
     }
 
     // Quando deslogar deve remova do storage
     remove() {
         this.storage.remove('email');
-        this.storage.remove('pass');
+        this.get().then(res => {
+            console.log('resultado >>> ', res);
+        });
     }
 
     exist() {
+        let check = null;
         this.get().then(res => {
-            console.log('resultado >>> ', res);
+           
             if(res) {
-                console.log('resultado IF');;
-                return true;
+                check = res;
             } else {
-                console.log('resultado else');
-                return false;
-            }
-            
+                check = null;
+            }  
         });
+        console.log(check);
+        return check;
     } 
 }

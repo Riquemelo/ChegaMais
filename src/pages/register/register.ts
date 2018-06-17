@@ -34,6 +34,7 @@ export class RegisterPage {
   mesagemErro = '';
 
   constructor(
+    public afDatabase: AngularFireDatabase,
     private afAuth: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams,

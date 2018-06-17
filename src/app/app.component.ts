@@ -13,14 +13,22 @@ import { Session } from '../app/session';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any;
+  rootPage: any;
   constructor(public session: Session, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this.rootPage = (this.session.exist()) ? IntroPage : TabsPage;
+
+      this.session.get().then(res => {
+        if (res != undefined && res != null) {
+          this.rootPage = TabsPage;
+        } else {
+          this.rootPage = IntroPage;
+        }
       });
+
+    });
   }
 }

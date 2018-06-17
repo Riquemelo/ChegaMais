@@ -56,7 +56,7 @@ export class LoginPage {
     if (user.email != '' && user.password != '' && user.email != null)
       this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
         .then((returnedUser) => {
-          this.session.create(user.email, user.password);
+          this.session.create(user.email);
           console.log(returnedUser);
           
           this.goToTabsPage();
