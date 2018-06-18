@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-navbar color="theme-darkgray">
-    <ion-title>Categoria</ion-title>
+  <ion-navbar color="theme-darkred">
+    <ion-title>{{(categoria)}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -21,4 +21,7 @@
       </ion-item>
     </ion-card>
   </ion-list>
+  <ion-fab right bottom>
+      <button ion-fab color="theme-darkred" (click)="insertEvent()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>

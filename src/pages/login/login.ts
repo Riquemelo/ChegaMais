@@ -32,8 +32,8 @@ export class LoginPage {
     private afAuth: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private alertCtrl: AlertController, 
-    public session: Session){
+    private alertCtrl: AlertController,
+    public session: Session) {
   }
 
 
@@ -58,9 +58,8 @@ export class LoginPage {
         .then((returnedUser) => {
           this.session.create(user.email);
           console.log(returnedUser);
-          
+
           this.goToTabsPage();
-          this.alert('Sucesso! Você Logou');
 
         }).catch(function (error) {
           console.log(error);
@@ -70,6 +69,8 @@ export class LoginPage {
   register() {
     this.navCtrl.push(RegisterPage);
   }
+
+
 
 }
 

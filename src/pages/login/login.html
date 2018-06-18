@@ -5,7 +5,9 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <!-- <ion-title>Login</ion-title> -->
+  <ion-navbar hideBackButton color="theme-darkred">
+    <ion-title>Login</ion-title>
+  </ion-navbar>
 </ion-header>
 
 
@@ -15,10 +17,11 @@
     <form align="center">
       <input autocomplete class="form-login" type="email" name="email" placeholder="Email" [(ngModel)]="user.email">
       <input class="form-login" type="password" name="pass" placeholder="Senha" [(ngModel)]="user.password">
+      <a href="" id="esqueci-login">Esqueci minha senha</a><br>
       <button class="form-button" ion-button (click)="login(user)">Login</button>
       <div>{{ErroMenssagem}}</div>    
     </form>
-    <a href="-" id="esqueci-login">Esqueci minha senha</a>
+    
   </div>
   <br>
   <button id="cadastro-button-login" ion-button (click)="register()">

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { NavController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { FeedPage } from '../feed/feed';
 import { HomePage } from '../home/home';
@@ -13,7 +13,11 @@ export class TabsPage {
   tab2Root:string = 'HomePage';
   tab3Root = FeedPage;
 
-  constructor() {
+  constructor(private navCtrl: NavController) {
 
+  }
+
+  Inicio(){
+    this.navCtrl.push(FeedPage);
   }
 }

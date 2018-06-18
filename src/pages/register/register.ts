@@ -106,7 +106,7 @@ export class RegisterPage {
                 });
                 alert.present();
                 alert.onDidDismiss(() => {
-                  this.session.create(user.email, user.password);
+                  this.session.create(user.email);
                   this.goToTabsPage();
                 })
 
