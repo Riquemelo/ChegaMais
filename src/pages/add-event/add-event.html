@@ -24,20 +24,20 @@
     </div>
     <div style="float: left; width: 40%">
         <label for="hora_evento" class="label_formulario_insert">Hora:</label><br/>
-        <input id="hora_evento" class="formulario_insert" type="number"/><br/>
+        <input id="hora_evento" class="formulario_insert" type="time"><br/>
     </div>
     <br/><br/><br/><br/>
 
     <label for="endereco_evento" class="label_formulario_insert">Endereço:</label><br/>
     <input id="endereco_evento" class="formulario_insert" type="endereco"/>
-    <span color="theme-darkred">*Insira rua, numero e cidade se possivel</span><br/><br/>
+    <br/><br/>
 
     <label for="desc_evento" class="label_formulario_insert">Descrição:</label><br/>
     <textarea id="desc_evento" class="textarea_formulario_insert" placeholder="Nos conte um pouco sobre seu evento"></textarea><br/>
     <br>
 
     <div id="submit_evento">
-    <button class="form-button" ion-button>Pronto</button>
+    <button class="form-button" (click)="insertEvent()" ion-button>Pronto</button>
     </div>
   </form>
 </ion-content>
