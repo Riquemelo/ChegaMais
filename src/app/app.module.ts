@@ -11,6 +11,7 @@ import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { EventoPage } from '../pages/evento/evento';
 import { RegisterPage } from '../pages/register/register';
+import { AddEventPage } from '../pages/add-event/add-event'
 // import { HomePage } from '../pages/home/home';
 
 // import {SharedModule } from '../app/share.module';
@@ -24,11 +25,15 @@ import { AngularFireModule } from 'angularfire2';
 import { FIREBASE_CONFIG } from "./app.firebase.config";
 import { Facebook } from '@ionic-native/facebook';//Importado
 import { AngularFireAuthModule } from "angularfire2/auth";
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { GeocoderProvider } from '../providers/geocoder/geocoder';
+import { HttpModule } from '@angular/http';
+import { Toast } from '@ionic-native/toast';
 
 @NgModule({
   declarations: [
     MyApp,
-    
+    AddEventPage,
     ProfilePage,
     FeedPage,
     TabsPage,
@@ -45,7 +50,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     IonicStorageModule.forRoot(),
-    Session
+    Session,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,7 +62,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     EventoPage,
     IntroPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    AddEventPage
     // HomePage
   ],
   providers: [
@@ -65,7 +72,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Facebook,
-    
+    NativeGeocoder,
+    Toast
   ]
 })
 export class AppModule {}

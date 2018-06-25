@@ -2,10 +2,11 @@ page-login {
     .form-login{
         width: 85%;
         height: 30px;
-        margin: 1px 0;
+        margin: 7px 0;
         text-align: center;
         font-size: 16px;
         border-radius: 3%;
+
     }
     #logotipo-login{
         max-width: 60%;
@@ -21,12 +22,13 @@ page-login {
     }
     #cadastro-button-login{
         position:absolute;
-        bottom:0;
+        bottom: 0;
         height: 10%;
         width: 100%;
         padding: 5% 0;
         background-color: #530701;
         color: white;
+        font-size: 12px;
     }
     #cadastro-button-login:active{
         background-color: #a50b0d
@@ -34,10 +36,12 @@ page-login {
     #esqueci-login{
         color: #a50b0d;
         font-weight: bold;
+        margin: 15px;
     }
     .form-button{
         color: #fff;
-        background-color: #530701
+        background-color: #530701;
+        margin: 7px;
     }
     .form-button:active{
         background-color: #a50b0d;
