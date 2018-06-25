@@ -4,9 +4,10 @@ import { IntroPage } from '../intro/intro';
 import { Profile } from '../../models/profile';
 import { Session } from '../../app/session';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import { AlertController } from 'ionic-angular';
 import { App } from 'ionic-angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'page-profile',
@@ -15,7 +16,10 @@ import { App } from 'ionic-angular';
 
 export class ProfilePage {
 
-  profile = {} as Profile;
+  profileData: AngularFireObject<Profile>;
+
+  items: Observable<any>;
+
 
   constructor(
     public navCtrl: NavController,
@@ -24,13 +28,17 @@ export class ProfilePage {
     public session: Session,
     private alertCtrl: AlertController,
     private app: App) {
+      
+    this.items = afDatabase.object('profile/YW7Qyurq0QWgeQEsemURQWwStAp2').valueChanges();
+
   }
 
-  createProfile() {
+  ionViewDidLoad() {
     this.afAuth.authState.take(1).subscribe(auth => {
-      this.afDatabase.object('profile/${auth.uid}').set(this.profile)
-        .then(() => this.navCtrl.setRoot('TabsPage'));
+      //console.log(auth);
+      this.items = this.afDatabase.object(`profile/${auth.uid}`).valueChanges();
     })
+
   }
 
   goToIntroPage() {
@@ -38,26 +46,33 @@ export class ProfilePage {
     nav.push(IntroPage);
   }
 
-showConfirm() {
-  const confirm = this.alertCtrl.create({
-    title: 'Não nos deixe :(',
-    message: 'Tem certeza que quer sair?',
-    buttons: [
-      {
-        text: 'Não',
-        handler: () => {
-          console.log('Disagree clicked');
+  getDataFromFireBse(){
+    this.afAuth.authState.take(1).subscribe(auth => {
+      console.log(auth);
+    })
+     
+  }
+
+  showConfirm() {
+    const confirm = this.alertCtrl.create({
+      title: 'Não nos deixe :(',
+      message: 'Tem certeza que quer sair?',
+      buttons: [
+        {
+          text: 'Não',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.session.remove();
+            this.goToIntroPage();
+          }
         }
-      },
-      {
-        text: 'Sim',
-        handler: () => {
-          this.session.remove();
-          this.goToIntroPage();
-        }
-      }
-    ]
-  });
-  confirm.present();
-}
+      ]
+    });
+    confirm.present();
+  }
 }

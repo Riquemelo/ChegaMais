@@ -1,31 +1,91 @@
 <ion-header>
-    <ion-navbar color="theme-darkgray">
-      <ion-title>
-        Perfil
-      </ion-title>
-      <ion-buttons end>
-          <button (click)="showConfirm()" ion-button icon-only>
-            <ion-icon name="exit"></ion-icon>
-          </button>
-        </ion-buttons>
-    </ion-navbar>
-
-
-<ion-toolbar no-border-top>
-    <ion-segment [(ngModel)]="secoes">
-      <ion-segment-button value="infos">
-        Informações
-      </ion-segment-button>
-      <ion-segment-button value="events">
-        Eventos
-      </ion-segment-button>
-      <ion-segment-button value="amigos">
-        Amigos
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
+  <ion-navbar color="theme-darkgray">
+    <ion-title>
+      Perfil
+    </ion-title>
+    <ion-buttons end>
+      <button (click)="showConfirm()" ion-button icon-only>
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
-
 <ion-content>
+
+  <ion-card id='Info-basic'>
+    <ion-card-header>
+      <h2 id='Info-basic-msg'>
+        Bem Vindo(a) !!
+      </h2>
+    </ion-card-header>
+    <ion-card-content>
+      <h1 id='Profile-name'>
+        {{ (items | async)?.nome }}
+      </h1>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card id='Info-event'>
+    <ion-card-header>
+      <h2 id='Info-basic-msg'>
+        Eventos Marcados
+      </h2>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card id='Info-event'>
+    <ion-card-content>
+      <h2 id='Profile-name'>
+        Evento N°1
+      </h2>
+      <img id='Info-event-img' src="assets/imgs/cards/games-card.jpg">
+      <br>
+      <p id='Info-basic-msg'>Descrição...</p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button id='Info-event-button-right' ion-button clear small color="danger" icon-start>
+          <ion-icon id='Info-event-icon' name='star'></ion-icon>
+          <p id='Info-basic-msg'>Favorito</p>
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button id='Info-event-button-left' ion-button clear small color="danger" icon-start>
+          <p id='Info-basic-msg'>Compartilhar</p>
+          <ion-icon id='Info-event-icon' name='share-alt'></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card id='Info-event'>
+    <ion-card-content>
+      <h2 id='Profile-name'>
+        Evento N°2
+      </h2>
+      <img id='Info-event-img' src="assets/imgs/cards/balada-card.jpg" />
+      <br>
+      <p id='Info-basic-msg'>Descrição...</p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+        <ion-col>
+          <button id='Info-event-button-right' ion-button clear small color="danger" icon-start>
+            <ion-icon id='Info-event-icon' name='star'></ion-icon>
+            <p id='Info-basic-msg'>Favorito</p>
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button id='Info-event-button-left' ion-button clear small color="danger" icon-start>
+            <p id='Info-basic-msg'>Compartilhar</p>
+            <ion-icon id='Info-event-icon' name='share-alt'></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+  </ion-card>
+
+
+
 </ion-content>

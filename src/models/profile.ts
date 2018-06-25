@@ -1,4 +1,4 @@
 export interface Profile{
-    username: String;
     nome: String;
+    username: String;
 }
